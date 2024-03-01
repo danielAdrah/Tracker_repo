@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracker/view/main_tabView/main_tab_view.dart';
 import './common/color_extensions.dart';
-import 'view/login/welcome_view.dart';
+// import 'view/login/welcome_view.dart';
 
 void main() {
   runApp(const MyApp());

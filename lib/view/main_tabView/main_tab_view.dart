@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common/color_extensions.dart';
+import '../calnder_view/calnder_view.dart';
 import '../home/home_view.dart';
 import '../spending&budget/spending&budget.dart';
 
@@ -85,7 +86,7 @@ class _MainTabViewState extends State<MainTabView> {
                               onPressed: () {
                                 setState(() {
                                   selectTab = 2;
-                                  currentTabView = Container();
+                                  currentTabView = CalnderView();
                                 });
                               },
                               icon: Image.asset(
