@@ -172,8 +172,8 @@ class _CalnderViewState extends State<CalnderView> {
                         fullCalendarDay: WeekDay.long,
                         selectedDateColor: TColor.white,
                         dateColor: Colors.white,
-                        calendarEventSelectedColor: TColor.secondary,
                         locale: 'en',
+                        
                         initialDate: DateTime.now(),
                         calendarEventColor: Colors.green,
                         firstDate:

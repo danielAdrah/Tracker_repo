@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../view/add_subscription/add_subscription_view.dart';
 import '../../common/color_extensions.dart';
 import '../calnder_view/calnder_view.dart';
 import '../home/home_view.dart';
@@ -118,6 +118,13 @@ class _MainTabViewState extends State<MainTabView> {
                         ),
                       ]),
                       InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AddSubscriptionView()));
+                        },
                         child: Container(
                           margin: const EdgeInsets.all(20),
                           decoration: BoxDecoration(

@@ -38,6 +38,7 @@ dependencies:
   intl: ^0.18.0
   calendar_agenda:
     path: div_lib/calendar_agenda-main
+  carousel_slider: ^4.2.1
 
 
 dev_dependencies:
