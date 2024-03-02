@@ -119,7 +119,10 @@ class _CalnderViewState extends State<CalnderView> {
                             ),
                             InkWell(
                               borderRadius: BorderRadius.circular(12),
-                              onTap: () {},
+                              onTap: () {
+                                calendarAgendaControllerNotAppBar
+                                    .openCalendaer();
+                              },
                               child: Container(
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
@@ -154,6 +157,7 @@ class _CalnderViewState extends State<CalnderView> {
                       CalendarAgenda(
                         controller: calendarAgendaControllerNotAppBar,
                         backgroundColor: Colors.transparent,
+                        fullCalenderBackgroundColor: TColor.gray80,
                         appbar: true,
                         selectedDayPosition: SelectedDayPosition.right,
                         leading: IconButton(
@@ -163,11 +167,12 @@ class _CalnderViewState extends State<CalnderView> {
                           ),
                           onPressed: () {},
                         ),
-                        weekDay: WeekDay.long,
+                        weekDay: WeekDay.short,
                         fullCalendarScroll: FullCalendarScroll.horizontal,
-                        fullCalendarDay: WeekDay.short,
-                        selectedDateColor: Colors.green.shade900,
+                        fullCalendarDay: WeekDay.long,
+                        selectedDateColor: TColor.white,
                         dateColor: Colors.white,
+                        calendarEventSelectedColor: TColor.secondary,
                         locale: 'en',
                         initialDate: DateTime.now(),
                         calendarEventColor: Colors.green,
@@ -183,6 +188,32 @@ class _CalnderViewState extends State<CalnderView> {
                             selectedDateNotAppBBar = date;
                           });
                         },
+                        decoration: BoxDecoration(
+                            color: TColor.gray60.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                                color: TColor.border.withOpacity(0.15))),
+                        selectDecoration: BoxDecoration(
+                            color: TColor.gray60,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                                color: TColor.border.withOpacity(0.15))),
+                        eventLogo: Container(
+                          width: 5,
+                          height: 5,
+                          decoration: BoxDecoration(
+                            color: TColor.secondary,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        selectedEventLogo: Container(
+                          width: 5,
+                          height: 5,
+                          decoration: BoxDecoration(
+                            color: TColor.secondaryG,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
                       ),
                     ],
                   ),

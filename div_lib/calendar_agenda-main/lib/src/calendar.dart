@@ -22,6 +22,7 @@ class CalendarAgenda extends StatefulWidget implements PreferredSizeWidget {
   final SelectedDayPosition selectedDayPosition;
   final Color? selectedDateColor;
   final Color? dateColor;
+  final Color? fullCalenderBackgroundColor;
   final Color? headerDateColor;
   final Color? calendarBackground;
   final Color? calendarEventSelectedColor;
@@ -57,6 +58,7 @@ class CalendarAgenda extends StatefulWidget implements PreferredSizeWidget {
     this.decoration,
     this.selectDecoration,
     this.controller,
+    this.fullCalenderBackgroundColor,
     this.selectedDateColor = Colors.black,
     this.dateColor = Colors.white,
     this.headerDateColor = Colors.white,
@@ -136,7 +138,7 @@ class CalendarAgendaState extends State<CalendarAgenda>
     Widget dayList() {
       return Container(
         width: MediaQuery.of(context).size.width,
-        height: widget.appbar ? 125 : 100,
+        height: widget.appbar ? 125 : 120,
         padding: EdgeInsets.all(5),
         alignment: Alignment.bottomCenter,
         child: ScrollablePositionedList.builder(
@@ -158,7 +160,7 @@ class CalendarAgendaState extends State<CalendarAgenda>
                 : true,
             itemScrollController: _scrollController,
             physics: const BouncingScrollPhysics(
-              parent:  AlwaysScrollableScrollPhysics(),
+              parent: AlwaysScrollableScrollPhysics(),
             ),
             itemCount: _dates.length,
             itemBuilder: (context, index) {
@@ -176,25 +178,32 @@ class CalendarAgendaState extends State<CalendarAgenda>
                       child: Container(
                         height: 120.0,
                         width: MediaQuery.of(context).size.width / 7 - 10,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: isSelected ? Colors.white : null,
-                          boxShadow: [
-                            isSelected
-                                ? BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    spreadRadius: 1,
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  )
-                                : BoxShadow(
-                                    color: Colors.grey.withOpacity(0.0),
-                                    spreadRadius: 5,
-                                    blurRadius: 20,
-                                    offset: Offset(0, 3),
-                                  )
-                          ],
-                        ),
+                        decoration: isSelected &&
+                                widget.selectDecoration != null
+                            ? widget.selectDecoration!
+                            : !isSelected && widget.selectDecoration != null
+                                ? widget.decoration!
+                                : BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: isSelected ? Colors.white : null,
+                                    boxShadow: [
+                                      isSelected
+                                          ? BoxShadow(
+                                              color:
+                                                  Colors.black.withOpacity(0.2),
+                                              spreadRadius: 1,
+                                              blurRadius: 10,
+                                              offset: const Offset(0, 3),
+                                            )
+                                          : BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.0),
+                                              spreadRadius: 5,
+                                              blurRadius: 20,
+                                              offset: const Offset(0, 3),
+                                            )
+                                    ],
+                                  ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -202,24 +211,24 @@ class CalendarAgendaState extends State<CalendarAgenda>
                                     .contains(date.toString().split(" ").first)
                                 ? isSelected && widget.selectedEventLogo != null
                                     ? widget.selectedEventLogo!
-                                    : !isSelected && widget.eventLogo != null
-                                        ? widget.eventLogo!
-                                        : SizedBox(
-                                            height: 5.0,
-                                          )
-                                : SizedBox(
-                                    height: 10,
-                                  ),
+                                    : const SizedBox(
+                                        height: 5.0,
+                                      )
+                                : !isSelected && widget.eventLogo != null
+                                    ? widget.eventLogo!
+                                    : const SizedBox(
+                                        height: 10,
+                                      ),
                             Text(
                               DateFormat("dd").format(date),
                               style: TextStyle(
-                                  fontSize: 22.0,
+                                  fontSize: 20,
                                   color: isSelected
                                       ? widget.selectedDateColor
                                       : widget.headerDateColor,
                                   fontWeight: isSelected
-                                      ? FontWeight.bold
-                                      : FontWeight.w500),
+                                      ? FontWeight.w700
+                                      : FontWeight.w700),
                             ),
                             SizedBox(height: 5),
                             Text(
@@ -233,9 +242,7 @@ class CalendarAgendaState extends State<CalendarAgenda>
                                 color: isSelected
                                     ? widget.selectedDateColor
                                     : widget.headerDateColor,
-                                fontWeight: isSelected
-                                    ? FontWeight.bold
-                                    : FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ],
@@ -251,7 +258,7 @@ class CalendarAgendaState extends State<CalendarAgenda>
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: widget.appbar ? 210 : 150.0,
+      height: widget.appbar ? 210 : 115.0,
       child: Stack(
         children: [
           Positioned(
@@ -300,7 +307,8 @@ class CalendarAgendaState extends State<CalendarAgenda>
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      shape: RoundedRectangleBorder(
+      backgroundColor: widget.fullCalenderBackgroundColor,
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
       ),
