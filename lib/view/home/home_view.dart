@@ -6,6 +6,7 @@ import '../../common_widget/upcoming_bills.dart';
 import '../../common_widget/status_button.dart';
 import '../../common_widget/custom_arc.dart';
 import '../../view/subscription_info/subscription_info_view.dart';
+import '../settings/settings_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -61,13 +62,41 @@ class _HomeViewState extends State<HomeView> {
                 alignment: Alignment.center,
                 children: [
                   Image.asset("assets/img/home_bg.png"),
-                  Container(
-                    padding: EdgeInsets.only(bottom: media.width * 0.1),
-                    width: media.width * 0.7,
-                    height: media.height * 0.7,
-                    child: CustomPaint(
-                      painter: CustomArcPainter(end: 220),
-                    ),
+                  Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: media.width * 0.1),
+                        width: media.width * 0.7,
+                        height: media.height * 0.7,
+                        child: CustomPaint(
+                          painter: CustomArcPainter(end: 220),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 35, right: 10),
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SettingsView()));
+                              },
+                              icon: Image.asset(
+                                "assets/img/settings.png",
+                                width: 25,
+                                height: 25,
+                                color: TColor.gray30,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
@@ -209,7 +238,7 @@ class _HomeViewState extends State<HomeView> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                     SubscriptionInfoView(sObj :sObj)));
+                                    SubscriptionInfoView(sObj: sObj)));
                       },
                     );
                   }),

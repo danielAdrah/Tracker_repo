@@ -4,11 +4,7 @@ import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter/material.dart';
 import 'package:tracker/common/color_extensions.dart';
 import '../../common_widget/subscription_cell.dart';
-// import '../../common_widget/segment_button.dart';
-// import '../../common_widget/subscription_home_row.dart';
-// import '../../common_widget/upcoming_bills.dart';
-// import '../../common_widget/status_button.dart';
-// import '../../common_widget/custom_arc.dart';
+import '../../view/settings/settings_view.dart';
 
 class CalnderView extends StatefulWidget {
   const CalnderView({super.key});
@@ -75,15 +71,40 @@ class _CalnderViewState extends State<CalnderView> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              child: Stack(
+                                alignment: Alignment.center,
                                 children: [
-                                  Text(
-                                    "Calender",
-                                    style: TextStyle(
-                                      color: TColor.gray30,
-                                      fontSize: 16,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Calender",
+                                        style: TextStyle(
+                                          color: TColor.gray30,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Spacer(),
+                                      IconButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SettingsView()));
+                                        },
+                                        icon: Image.asset(
+                                          "assets/img/settings.png",
+                                          width: 25,
+                                          height: 25,
+                                          color: TColor.gray30,
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ],
                               ),
@@ -173,7 +194,6 @@ class _CalnderViewState extends State<CalnderView> {
                         selectedDateColor: TColor.white,
                         dateColor: Colors.white,
                         locale: 'en',
-                        
                         initialDate: DateTime.now(),
                         calendarEventColor: Colors.green,
                         firstDate:

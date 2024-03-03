@@ -4,6 +4,7 @@ import '../../common_widget/budget_row.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 import '../../common_widget/custom_arc_180.dart';
+import '../settings/settings_view.dart';
 
 class SpendingAndBudget extends StatefulWidget {
   const SpendingAndBudget({super.key});
@@ -48,8 +49,29 @@ class _SpendingAndBudgetState extends State<SpendingAndBudget> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 75,
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 35, right: 10),
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SettingsView()));
+                      },
+                      icon: Image.asset(
+                        "assets/img/settings.png",
+                        width: 25,
+                        height: 25,
+                        color: TColor.gray30,
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
             Stack(
               alignment: Alignment.bottomCenter,
