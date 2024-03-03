@@ -5,6 +5,7 @@ import '../../common_widget/subscription_home_row.dart';
 import '../../common_widget/upcoming_bills.dart';
 import '../../common_widget/status_button.dart';
 import '../../common_widget/custom_arc.dart';
+import '../../view/subscription_info/subscription_info_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -203,7 +204,13 @@ class _HomeViewState extends State<HomeView> {
                     var sObj = subArr[index] as Map? ?? {};
                     return SubscriptionHomeRow(
                       sObj: sObj,
-                      onpressed: () {},
+                      onpressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                     SubscriptionInfoView(sObj :sObj)));
+                      },
                     );
                   }),
             if (!isSubscripe)

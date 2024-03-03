@@ -67,7 +67,9 @@ class _AddSubscriptionViewState extends State<AddSubscriptionView> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             icon: Image.asset(
                               "assets/img/back.png",
                               width: 25,
@@ -208,15 +210,3 @@ class _AddSubscriptionViewState extends State<AddSubscriptionView> {
   }
 }
 
-// options: CarouselOptions(height: 400),
-//                           items: [1, 2, 3, 4, 5].map((i) {
-//                             return Builder(
-//                               builder: (BuildContext context) {
-//                                 return Container(
-//                                   width: MediaQuery.of(context).size.width,
-//                                   margin:
-//                                       const EdgeInsets.symmetric(horizontal: 5),
-//                                   decoration: BoxDecoration(
-//                                     color: Colors.amber,
-//                                   ),
-//                                   child: Text("$i"),
