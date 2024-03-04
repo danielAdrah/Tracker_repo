@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../view/add_subscription/add_subscription_view.dart';
 import '../../common/color_extensions.dart';
 import '../calnder_view/calnder_view.dart';
+import '../cards/cards_view.dart';
 import '../home/home_view.dart';
 import '../spending&budget/spending&budget.dart';
 
@@ -102,7 +103,7 @@ class _MainTabViewState extends State<MainTabView> {
                               onPressed: () {
                                 setState(() {
                                   selectTab = 3;
-                                  currentTabView = Container();
+                                  currentTabView = CardsView();
                                 });
                               },
                               icon: Image.asset(

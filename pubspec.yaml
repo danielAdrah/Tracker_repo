@@ -39,6 +39,8 @@ dependencies:
   calendar_agenda:
     path: div_lib/calendar_agenda-main
   carousel_slider: ^4.2.1
+  card_swiper: 
+    path: div_lib/card_swiper
 
 
 dev_dependencies:
